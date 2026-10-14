@@ -110,7 +110,6 @@ async def prepare_chat(
         selectinload(Order.payment),
         selectinload(Order.items),
     )
-    if level == 1:
         orders_stmt = orders_stmt.where(Order.user_id == user.id)
     orders_result = await db.execute(orders_stmt)
     orders = list(orders_result.scalars().all())
